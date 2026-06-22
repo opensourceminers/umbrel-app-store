@@ -21,8 +21,9 @@ description: >-
 releaseNotes: >-
   Fee + rebalance autopilot, channel suggestions with one-click open, Forwards
   report, and Profit & Loss overview.
-developer: Open Source Miners
+developer: opensourceminers.de
 website: https://opensourceminers.de
+icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
 dependencies:
   - lightning
 repo: https://github.com/opensourceminers/lightningmate

@@ -27,6 +27,7 @@ services:
       LND_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/readonly.macaroon"
       DATA_DIR: "/data"
       PORT: "3001"
-      # Uncomment to allow fee/rebalance writes (admin macaroon path below):
-      # LM_ENABLE_WRITE: "true"
-      # LND_WRITE_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"
+      # Enable fee/rebalance/open-channel writes + autopilot (admin macaroon,
+      # auto-mounted read-only from the lightning app's data dir).
+      LM_ENABLE_WRITE: "true"
+      LND_WRITE_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"
