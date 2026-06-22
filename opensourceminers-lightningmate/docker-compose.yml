@@ -17,9 +17,16 @@ services:
       # App's own writable data dir (autopilot config + rebalance accounting).
       - ${APP_DATA_DIR}/data:/data
     environment:
+      # Pass LND connection details from the lightning app into the container.
+      APP_LIGHTNING_NODE_IP: "$APP_LIGHTNING_NODE_IP"
+      APP_LIGHTNING_NODE_GRPC_PORT: "$APP_LIGHTNING_NODE_GRPC_PORT"
       LND_SOCKET: "$APP_LIGHTNING_NODE_IP:$APP_LIGHTNING_NODE_GRPC_PORT"
+      # Explicit cert/macaroon paths in the mounted, read-only LND data dir.
       LND_DIR: "/lnd"
+      LND_CERT_PATH: "/lnd/tls.cert"
+      LND_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/readonly.macaroon"
       DATA_DIR: "/data"
       PORT: "3001"
-      # Uncomment to allow fee/rebalance writes (admin macaroon auto-discovered):
+      # Uncomment to allow fee/rebalance writes (admin macaroon path below):
       # LM_ENABLE_WRITE: "true"
+      # LND_WRITE_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"
