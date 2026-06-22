@@ -7,7 +7,7 @@ services:
       APP_PORT: 3001
 
   web:
-    image: ghcr.io/opensourceminers/lightningmate:v0.4.4@sha256:6f749725c99b2abd393a40df1067e6b37cc6fbedad098f529525264d04725278
+    image: ghcr.io/opensourceminers/lightningmate:v0.5.1@sha256:1145033e26d30e1af0a29ccbe4723ba4b75d67c3865a20282a6be1112460b258
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m
@@ -27,6 +27,9 @@ services:
       LND_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/readonly.macaroon"
       DATA_DIR: "/data"
       PORT: "3001"
+      # Bind to all interfaces so Umbrel's app_proxy can reach the container.
+      # (Standalone defaults to 127.0.0.1 for safety.) app_proxy provides auth.
+      LM_BIND: "0.0.0.0"
       # Enable fee/rebalance/open-channel writes + autopilot (admin macaroon,
       # auto-mounted read-only from the lightning app's data dir).
       LM_ENABLE_WRITE: "true"
