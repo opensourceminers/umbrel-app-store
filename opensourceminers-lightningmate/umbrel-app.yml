@@ -1,0 +1,33 @@
+manifestVersion: 1
+id: opensourceminers-lightningmate
+category: finance
+name: LightningMate
+version: "0.4.4"
+tagline: Profit-aware management & autopilot for your Lightning node
+description: >-
+  LightningMate manages your Lightning node so you don't have to babysit it.
+  It connects automatically to your Umbrel Lightning (LND) node.
+
+
+  See channels with live balance bars and source / sink / router roles, a full
+  Forwards routing report, and a Profit & Loss overview (routing revenue vs
+  channel-open and rebalancing costs). Get scored channel-peer suggestions from
+  the network graph and open channels in a click.
+
+
+  Flip on the Autopilot and the node tunes its own fees and runs only profitable
+  rebalances on recommended settings — with safe caps and per-channel cooldowns.
+  Read-only by default; writes are opt-in.
+releaseNotes: >-
+  Fee + rebalance autopilot, channel suggestions with one-click open, Forwards
+  report, and Profit & Loss overview.
+developer: Open Source Miners
+website: https://opensourceminers.de
+dependencies:
+  - lightning
+repo: https://github.com/opensourceminers/lightningmate
+support: https://github.com/opensourceminers/lightningmate/issues
+port: 3001
+path: ""
+submitter: opensourceminers
+submission: https://github.com/opensourceminers/lightningmate

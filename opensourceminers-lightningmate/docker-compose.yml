@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: opensourceminers-lightningmate_web_1
+      APP_PORT: 3001
+
+  web:
+    image: ghcr.io/opensourceminers/lightningmate:v0.4.4@sha256:6f749725c99b2abd393a40df1067e6b37cc6fbedad098f529525264d04725278
+    user: "1000:1000"
+    restart: on-failure
+    stop_grace_period: 1m
+    volumes:
+      # Read-only access to LND's tls.cert + macaroons (incl. admin if writes on).
+      - ${APP_LIGHTNING_NODE_DATA_DIR}:/lnd:ro
+      # App's own writable data dir (autopilot config + rebalance accounting).
+      - ${APP_DATA_DIR}/data:/data
+    environment:
+      LND_SOCKET: "$APP_LIGHTNING_NODE_IP:$APP_LIGHTNING_NODE_GRPC_PORT"
+      LND_DIR: "/lnd"
+      DATA_DIR: "/data"
+      PORT: "3001"
+      # Uncomment to allow fee/rebalance writes (admin macaroon auto-discovered):
+      # LM_ENABLE_WRITE: "true"
