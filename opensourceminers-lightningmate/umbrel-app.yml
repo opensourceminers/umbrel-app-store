@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.5.2"
+version: "0.5.3"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -19,11 +19,10 @@ description: >-
   rebalances on recommended settings — with safe caps and per-channel cooldowns.
   Read-only by default; writes are opt-in.
 releaseNotes: >-
-  Tabs with icons at the top and a Channels-only hero. Node health now scores 8
-  components. Suggestions split into open and close (idle / unproductive
-  channels). In-app toasts, confirm dialogs, skeleton loaders and polished empty
-  states. Accuracy fixes to routing-fee, channel-balance and rebalance-cost
-  calculations, plus table alignment.
+  Smarter channel suggestions tuned for routing income — a new-reach metric
+  rewards peers that open genuinely new destinations, mid-tier active routers are
+  favoured and over-saturated mega-hubs are dampened. Donate now opens a public
+  BTCPay page.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
