@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.1"
+version: "0.6.2"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -17,12 +17,16 @@ description: >-
 
   Flip on the Autopilot and the node tunes its own fees and runs only profitable
   rebalances on recommended settings — with safe caps and per-channel cooldowns.
-  Read-only by default; writes are opt-in.
+
+
+  The dashboard is read-only by default. Fee changes, rebalances, payments and
+  the autopilot stay locked until you unlock write mode with your Umbrel password,
+  so no other app on your server can move your funds.
 releaseNotes: >-
-  Rebalancing reworked, Thunderhub-style: a manual rebalance (pick source /
-  target / amount / max fee), profitability shown as guidance so you decide and
-  can run any candidate, adaptive amounts, readable failure reasons in the log,
-  and a more generous pathfinding timeout.
+  Write mode is now protected: fee changes, rebalances, payments and autopilot
+  require unlocking with your Umbrel password, so no other app on your server can
+  move your funds. Plus profit-aware rebalance ranking with expected-profit
+  estimates, and an autopilot rebalance time window.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg

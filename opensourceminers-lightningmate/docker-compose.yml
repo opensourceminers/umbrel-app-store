@@ -7,7 +7,7 @@ services:
       APP_PORT: 3001
 
   web:
-    image: ghcr.io/opensourceminers/lightningmate:v0.6.1@sha256:a1fc9f52c043f14b7b55ce29497ac6874085079abd527c3b9749c9d711100d62
+    image: ghcr.io/opensourceminers/lightningmate:v0.6.2@sha256:197164dbb072cba64b92c801ee45750ad3f8f69a3dc4a423fd431002a823d710
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m
@@ -24,13 +24,17 @@ services:
       # Explicit cert/macaroon paths in the mounted, read-only LND data dir.
       LND_DIR: "/lnd"
       LND_CERT_PATH: "/lnd/tls.cert"
-      LND_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/readonly.macaroon"
+      LND_MACAROON_PATH: "/lnd/data/chain/bitcoin/$APP_BITCOIN_NETWORK/readonly.macaroon"
       DATA_DIR: "/data"
       PORT: "3001"
       # Bind to all interfaces so Umbrel's app_proxy can reach the container.
       # (Standalone defaults to 127.0.0.1 for safety.) app_proxy provides auth.
       LM_BIND: "0.0.0.0"
+      # Per-install secrets for server-side write-mode auth (other app containers
+      # share the Docker network). $APP_PASSWORD = the user's Umbrel password.
+      APP_PASSWORD: "$APP_PASSWORD"
+      APP_SEED: "$APP_SEED"
       # Enable fee/rebalance/open-channel writes + autopilot (admin macaroon,
       # auto-mounted read-only from the lightning app's data dir).
       LM_ENABLE_WRITE: "true"
-      LND_WRITE_MACAROON_PATH: "/lnd/data/chain/bitcoin/mainnet/admin.macaroon"
+      LND_WRITE_MACAROON_PATH: "/lnd/data/chain/bitcoin/$APP_BITCOIN_NETWORK/admin.macaroon"
