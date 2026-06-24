@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.3"
+version: "0.6.4"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -24,8 +24,9 @@ description: >-
   node or move your funds.
 releaseNotes: >-
   Lightning Mate now signs in with the per-app password Umbrel shows you, so no
-  other app on your server can read your node or move your funds. Plus profit-aware
-  rebalance ranking with expected-profit estimates and an autopilot time window.
+  other app on your server can read your node or move your funds. The Channels tab
+  is reorganised into sub-tabs (channels / suggestions / to close). Plus profit-
+  aware rebalance ranking with expected-profit estimates and an autopilot window.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
