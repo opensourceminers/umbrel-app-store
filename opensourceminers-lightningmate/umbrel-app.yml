@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.4"
+version: "0.6.5"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -19,14 +19,21 @@ description: >-
   rebalances on recommended settings — with safe caps and per-channel cooldowns.
 
 
+  Buy and sell channel liquidity on the Amboss Magma marketplace right from the
+  app: purchase inbound, list your own sell offer, and let the Autopilot fulfil
+  orders automatically — opening channels to buyers within your capital caps.
+
+
   Lightning Mate signs in with the per-app password Umbrel generates for it
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  Lightning Mate now signs in with the per-app password Umbrel shows you, so no
-  other app on your server can read your node or move your funds. The Channels tab
-  is reorganised into sub-tabs (channels / suggestions / to close). Plus profit-
-  aware rebalance ranking with expected-profit estimates and an autopilot window.
+  New: the Amboss Magma liquidity marketplace in a dedicated Market tab — buy
+  inbound liquidity (USD-priced), create / edit your own sell offer with a live
+  market reference, and let the Autopilot auto-fulfil orders (accept, open the
+  channel to the buyer, optional auto-close after the lease) within capital,
+  channel-size and on-chain-reserve caps. Plus a sign-message tool (for Amboss
+  Login with Node).
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
