@@ -30,8 +30,9 @@ services:
       # Bind to all interfaces so Umbrel's app_proxy can reach the container.
       # (Standalone defaults to 127.0.0.1 for safety.) app_proxy provides auth.
       LM_BIND: "0.0.0.0"
-      # Per-install secrets for server-side write-mode auth (other app containers
-      # share the Docker network). $APP_PASSWORD = the user's Umbrel password.
+      # Per-install secrets for server-side auth (other app containers share the
+      # Docker network). $APP_PASSWORD = the per-app password Umbrel shows the
+      # user (deterministicPassword); $APP_SEED signs session tokens.
       APP_PASSWORD: "$APP_PASSWORD"
       APP_SEED: "$APP_SEED"
       # Enable fee/rebalance/open-channel writes + autopilot (admin macaroon,
