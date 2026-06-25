@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.7"
+version: "0.6.8"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,12 +28,12 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  A polished dashboard. The outbound / inbound bar is now a two-sided liquidity
-  meter with a balance indicator; Node health is regrouped into six categories —
-  including peer diversity and on-chain reserve — shown as a score ring with
-  colour-coded bars; and Profit & Loss has a clearer net-profit hero with a
-  segmented cost breakdown (opens / rebalancing / closes). The Autopilot history
-  is now expandable and shows exactly why an action failed.
+  The Overview gets a richer bottom row beside Recent activity: a Top channels
+  tile (your best fee earners), a Suggested peers tile (network-graph picks to
+  grow reach) and the Autopilot status — which now also shows Liquidity provision.
+  Every tile is clickable and jumps straight to its tab. The liquidity map is
+  redesigned into a balance-sorted view of each channel's outbound / inbound
+  split with a 50% reference line.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
