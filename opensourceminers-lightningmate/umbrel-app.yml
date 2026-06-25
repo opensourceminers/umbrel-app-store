@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.10"
+version: "0.6.11"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,11 +28,12 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  Opening a channel now connects to the peer and confirms it's online first,
-  fixing "RemotePeerDisconnected" when opening suggested channels. Selling
-  liquidity on Magma now carries a small, clearly-shown 0.5% service fee on
-  completed sales that supports Lightning Mate's development — it's disclosed in
-  the Sell tab, never added to buyers, and applied best-effort to your earnings.
+  A new Analytics tab: an earnings trend with a growth indicator, plus
+  per-channel profitability (fees earned vs rebalancing cost) so money-losing
+  channels stand out at a glance. On Magma, a "price to sell" optimizer suggests
+  a competitive price from the live market, and the Autopilot can auto-relist a
+  depleted offer within your caps. And a new Umbrel home-screen widget shows your
+  node stats — channels, outbound, fees earned and forwards — at a glance.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
@@ -51,3 +52,25 @@ path: ""
 deterministicPassword: true
 submitter: opensourceminers
 submission: https://github.com/opensourceminers/lightningmate
+widgets:
+  - id: "stats"
+    type: "four-stats"
+    refresh: "60s"
+    endpoint: "web:3001/api/widget/stats"
+    link: ""
+    example:
+      type: "four-stats"
+      link: ""
+      items:
+        - title: "Channels"
+          text: "25"
+          subtext: "active"
+        - title: "Outbound"
+          text: "55.7M"
+          subtext: "can send"
+        - title: "Earned"
+          text: "1.3k"
+          subtext: "sat · 30d"
+        - title: "Forwards"
+          text: "234"
+          subtext: "30d"
