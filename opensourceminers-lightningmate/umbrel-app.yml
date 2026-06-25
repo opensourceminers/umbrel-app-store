@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.9"
+version: "0.6.10"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,12 +28,11 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  The Overview gets a richer bottom row beside Recent activity: a Top channels
-  tile (your best fee earners), a Suggested peers tile (network-graph picks to
-  grow reach) and the Autopilot status — which now also shows Liquidity provision.
-  Every tile is clickable and jumps straight to its tab. The liquidity map is
-  redesigned, sized by channel capacity (largest first) with an outbound / inbound
-  split and a 50% reference line, so it's easy to see where your capital sits.
+  Opening a channel now connects to the peer and confirms it's online first,
+  fixing "RemotePeerDisconnected" when opening suggested channels. Selling
+  liquidity on Magma now carries a small, clearly-shown 0.5% service fee on
+  completed sales that supports Lightning Mate's development — it's disclosed in
+  the Sell tab, never added to buyers, and applied best-effort to your earnings.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg

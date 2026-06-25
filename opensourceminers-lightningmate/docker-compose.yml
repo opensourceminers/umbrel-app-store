@@ -7,7 +7,7 @@ services:
       APP_PORT: 3001
 
   web:
-    image: ghcr.io/opensourceminers/lightningmate:v0.6.9@sha256:889c8789442b78907dde8fd36653f1b9e6004c5f538a0fce9c2d7bd7b02aa75e
+    image: ghcr.io/opensourceminers/lightningmate:v0.6.10@sha256:199a9df7855714d3b2fe2bc011ebdda88bd58fee2653f283111b35094ca61c1a
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m
@@ -39,3 +39,8 @@ services:
       # auto-mounted read-only from the lightning app's data dir).
       LM_ENABLE_WRITE: "true"
       LND_WRITE_MACAROON_PATH: "/lnd/data/chain/bitcoin/$APP_BITCOIN_NETWORK/admin.macaroon"
+      # Service fee on completed Magma liquidity sales: 0.5% (50 bps) of the earned
+      # lease fee, paid to the address below. Shown in the Sell tab. Set to "0" to
+      # disable. Best-effort + skipped on the seller's own node.
+      LM_SELL_FEE_BPS: "50"
+      LM_SELL_FEE_ADDRESS: "lightningmate@btcpay.opensourceminers.de"
