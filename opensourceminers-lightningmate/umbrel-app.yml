@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.13"
+version: "0.6.14"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,13 +28,13 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  A big Autopilot upgrade. Fees now protect nearly-drained channels and never
-  route below your refill cost; rebalances run only when they pay back. The new
-  Autopilot hub (Fees · Rebalancing · Channels · Magma · History) puts each
-  control next to its live recommendations — apply them, set a fee yourself, or
-  exclude single channels. Channel suggestions are now demand-aware (open where
-  your node already routes), and the to-close list is P&L- and reach-aware and
-  honest about how much capital a close really frees.
+  Magma gets smart. The Sell tab now tells you whether leasing your liquidity
+  actually beats routing it (lease APY vs your node's yield on capital), prices
+  your offer competitively for your size band and seller score, and flags
+  under- or over-priced offers — all as recommendations you apply with one click.
+  The Buy tab ranks offers by true value, not seller score alone. And a rebuilt
+  Analytics tab adds a profit dashboard — net profit, node yield, routing revenue
+  and rebalancing — with per-channel earnings sparklines.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
