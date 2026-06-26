@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.12"
+version: "0.6.13"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,8 +28,13 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  Fixes the Umbrel home-screen widget so it shows live node stats (channels,
-  outbound, fees earned and forwards) instead of staying blank.
+  A big Autopilot upgrade. Fees now protect nearly-drained channels and never
+  route below your refill cost; rebalances run only when they pay back. The new
+  Autopilot hub (Fees · Rebalancing · Channels · Magma · History) puts each
+  control next to its live recommendations — apply them, set a fee yourself, or
+  exclude single channels. Channel suggestions are now demand-aware (open where
+  your node already routes), and the to-close list is P&L- and reach-aware and
+  honest about how much capital a close really frees.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
