@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: finance
 name: Lightning Mate
-version: "0.6.15"
+version: "0.6.16"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,12 +28,13 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  Magma now prices your offer for you. With Liquidity provision on, the autopilot
-  keeps your sell offer competitive for your size band and seller score — but only
-  while leasing still out-earns routing that capital, and at most once a day.
-  Relisting a depleted offer uses today's recommended price, not yesterday's, and
-  the To-close list points freed capital at Magma when leasing currently wins. You
-  can switch the auto-pricing off in the Autopilot's Magma tab.
+  Magma selling gets a brain. A new Auto pricing mode finds the price that just
+  clears — nudging your offer up after each sale and down when it sits unsold —
+  alongside Low (undercut to sell fast), Median and Premium. The profit floor now
+  tracks live on-chain fees so a mempool spike can't turn a sale into a loss, Low
+  undercuts the cheapest competitor, and idle capital is auto-listed when leasing
+  beats routing. The Sell tab adds a market-depth bar, projected earnings and your
+  seller score.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
