@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.6.19"
+version: "0.6.20"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,10 +28,10 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: >-
-  Fixes the autopilot so it runs when only Magma (Liquidity provision) is enabled —
-  your single sell offer is now maintained and repriced on its own, no need to turn
-  on the other autopilots. The autopilot also runs more often now (every 30 minutes
-  instead of 60).
+  Magma orders are now fulfilled within minutes: a separate fast poll accepts a
+  buyer's order and opens the channel every few minutes — protecting your seller
+  score — while the heavier fee/rebalance/pricing optimisation keeps running on its
+  normal schedule.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
