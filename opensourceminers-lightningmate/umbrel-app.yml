@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.6.23"
+version: "0.6.24"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -27,9 +27,13 @@ description: >-
   Lightning Mate signs in with the per-app password Umbrel generates for it
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
-releaseNotes: >-
-  Adds a Channel Backup card in Settings: download your node's Static Channel
-  Backup (SCB) so you can recover your channel funds if the node is ever lost.
+releaseNotes: |-
+  Sharper profit tracking & smarter fees:
+  - Profit & Loss now includes your Amboss Magma lease income, for the full picture.
+  - The fee Autopilot learns more reliably: it measures each change against the
+    market (so a network-wide swing isn't mistaken for your channel) and steers
+    toward the most profitable price instead of just nudging.
+  - It no longer hikes a busy channel's fee when raising previously cost it flow.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
