@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.6.24"
+version: "0.6.25"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,12 +28,11 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Sharper profit tracking & smarter fees:
-  - Profit & Loss now includes your Amboss Magma lease income, for the full picture.
-  - The fee Autopilot learns more reliably: it measures each change against the
-    market (so a network-wide swing isn't mistaken for your channel) and steers
-    toward the most profitable price instead of just nudging.
-  - It no longer hikes a busy channel's fee when raising previously cost it flow.
+  Smarter capital allocation. When both routing and Magma leasing are enabled, the
+  Autopilot now coordinates where your sats go: it only opens a new channel if a
+  new channel is expected to out-earn leasing that capital on Magma — otherwise it
+  leaves the sats for Magma. First step of a unified capital engine. (Builds on the
+  previous release's corrected P&L and smarter fee learning.)
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
