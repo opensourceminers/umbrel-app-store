@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.6.28"
+version: "0.6.29"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,16 +28,15 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  More forwards, clearer control.
-  - Fees push harder for routing volume: a zero base fee and a competitive floor
-    win more forwards, and a channel that stalls now gets cheaper faster.
-  - Autopilot Strategy is now one choice that sets everything together — Max
-    routing / Balanced / Max profit each tune fees, rebalancing, channels and Magma
-    coherently (with a daily rebalance-fee budget). Picking one applies instantly.
-  - Channels: a proper close dialog — pick the on-chain fee (fast / economy /
-    custom) or force-close; a closing channel now stays visible as "pending close"
-    until it confirms.
-  - Tidier header.
+  A calmer, smarter autopilot (tuning release).
+  - Strategy presets now truly govern rebalancing: the chosen strategy sets which
+    rebalances even qualify, plus a daily budget and backoff on failing routes.
+  - Fee changes are paced like experiments: raises wait days, price cuts step once
+    a day — and the engine remembers the price at which a quiet channel started
+    routing again, returning straight to it next time instead of guessing.
+  - A drained-but-busy channel is now protected with a gradual ramp instead of one
+    big jump, and offer repricing on the market no longer churns.
+  - Cleaner measurement windows, so the per-channel learning gets signal, not noise.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
