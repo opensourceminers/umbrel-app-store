@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.6.30"
+version: "0.6.31"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,16 +28,19 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  See what your node is doing at a glance.
-  - New "today" strip on the Overview: what the autopilot last did, when the next
-    run comes, a red warning if nothing routed for a week, and channels currently
-    opening or closing — each one click away.
-  - A channel being opened (manually, by the autopilot, or from a liquidity sale)
-    now shows as "pending open" until it confirms, instead of being invisible.
-  - The Autopilot shows a "Custom settings active" chip when your settings differ
-    from every Strategy preset.
-  - Much better on phones: scrollable tabs and tables, stacked layouts.
-  - Yield tile now shows the market lease benchmark next to your own yield.
+  Price to what SELLS, not what's listed.
+  - New market fill telemetry: LightningMate now watches the Magma order book
+    around the clock and detects real sales (an offer's available size dropping).
+    A "market pulse" line shows how many sales actually happened and at what
+    price — and once enough are observed, your offer is priced toward the price
+    that fills, never below your profit floor.
+  - New seller-score coach: an expandable checklist showing what drives your
+    Amboss seller score and what to improve — fast fulfilment, offer continuity,
+    waiting orders, market-tracked pricing.
+  - Quieter history: routine market repricing no longer floods the Autopilot run
+    history — only real actions (accepted orders, opened channels, relists) show.
+  Note: fill telemetry starts collecting after this update — the pulse fills up
+  over the first days.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
