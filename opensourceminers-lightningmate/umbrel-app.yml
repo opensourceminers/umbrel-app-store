@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.6.31"
+version: "0.7.0"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,19 +28,24 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Price to what SELLS, not what's listed.
-  - New market fill telemetry: LightningMate now watches the Magma order book
-    around the clock and detects real sales (an offer's available size dropping).
-    A "market pulse" line shows how many sales actually happened and at what
-    price — and once enough are observed, your offer is priced toward the price
-    that fills, never below your profit floor.
-  - New seller-score coach: an expandable checklist showing what drives your
-    Amboss seller score and what to improve — fast fulfilment, offer continuity,
-    waiting orders, market-tracked pricing.
-  - Quieter history: routine market repricing no longer floods the Autopilot run
-    history — only real actions (accepted orders, opened channels, relists) show.
-  Note: fill telemetry starts collecting after this update — the pulse fills up
-  over the first days.
+  Become a Lightning Service Provider — and lose fewer forwards.
+  - LSP mode (beta): sell inbound channels DIRECTLY to wallets speaking the open
+    LSPS1 standard (bLIP-51) — a second demand source beside Magma, with no
+    marketplace fee. Orders are priced by the same profit-aware engine, paid via
+    a hold invoice that only settles once your channel is opening; every failure
+    path refunds the buyer automatically. Capital is protected by the same
+    reserve and deployment caps as Magma selling. Off by default — flip it on in
+    Settings, share your node URI with the built-in buyer guide, and your node
+    announces LSP support in the graph (feature bit 729) while it's on.
+  - Advertise routable size (new autopilot option): keeps each channel's max
+    HTLC just under its spendable balance so senders skip depleted channels —
+    fewer failed forwards through your node, better reputation with senders.
+  - Unserved demand (Rebalancing tab): see the forwards your node had to REFUSE
+    for lack of outbound liquidity — count and volume per channel — exactly
+    where a rebalance or a bigger channel pays for itself. Starts collecting
+    after this update.
+  - Security hardening around the new LSP surface: shared capital deployment
+    cap across Magma + LSP sales, crash-proof peer-message handling.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
