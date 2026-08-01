@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.7.1"
+version: "0.7.2"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,22 +28,18 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Deeper routing insight — and a fix for silently-failed Magma selling.
-  - Fixed: an expired or revoked Amboss key made Magma buying AND selling
-    silently do nothing — no offers listed, no orders fulfilled — while the app
-    still showed "connected". LightningMate now checks whether Amboss still
-    accepts your key and shows "key expired — reconnect" in Settings and the
-    Sell tab. If you've never sold despite having selling on, this was likely
-    why: reconnect with a fresh key.
-  - New Routing view (Analytics → Routing): per-channel flow direction
-    (draining / filling / balanced, flagged when a draining channel is nearly
-    empty), routing corridors (the channel pairs that actually carry your flow —
-    a route needs both a source and a sink), and a banner for the forwards you
-    refused for lack of liquidity. Turns the forwards log into "where does flow
-    go, where am I losing it, what to do".
-  - Carried over from 0.7.0 for anyone updating from before: LSP mode (beta,
-    sell channels directly over LSPS1/bLIP-51, off by default), the "Advertise
-    routable size" autopilot option, and the unserved-demand telemetry.
+  Smarter auto-rebalancing — refill the channels that are actually earning.
+  - The rebalance autopilot no longer gets stuck raising a hot channel's fee
+    forever while never refilling it. It now refills a draining, in-demand
+    channel whenever that's profitable, and only insists on a fee raise first
+    when the channel's fee is genuinely below its own refill cost.
+  - Volume-first channels (priced low to win routing) are no longer structurally
+    excluded from being refilled — the real per-route profit check decides.
+  - The daily rebalance budget and each run's slots now go to the MOST PROFITABLE
+    moves first (not the biggest channels), and one over-budget move no longer
+    cancels the cheaper profitable ones behind it.
+  - Carried over from 0.7.1: the Routing view (Analytics → Routing) and the fix
+    that surfaces an expired Amboss key instead of silently failing to sell.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
