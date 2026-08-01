@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.7.0"
+version: "0.7.1"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,24 +28,22 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Become a Lightning Service Provider — and lose fewer forwards.
-  - LSP mode (beta): sell inbound channels DIRECTLY to wallets speaking the open
-    LSPS1 standard (bLIP-51) — a second demand source beside Magma, with no
-    marketplace fee. Orders are priced by the same profit-aware engine, paid via
-    a hold invoice that only settles once your channel is opening; every failure
-    path refunds the buyer automatically. Capital is protected by the same
-    reserve and deployment caps as Magma selling. Off by default — flip it on in
-    Settings, share your node URI with the built-in buyer guide, and your node
-    announces LSP support in the graph (feature bit 729) while it's on.
-  - Advertise routable size (new autopilot option): keeps each channel's max
-    HTLC just under its spendable balance so senders skip depleted channels —
-    fewer failed forwards through your node, better reputation with senders.
-  - Unserved demand (Rebalancing tab): see the forwards your node had to REFUSE
-    for lack of outbound liquidity — count and volume per channel — exactly
-    where a rebalance or a bigger channel pays for itself. Starts collecting
-    after this update.
-  - Security hardening around the new LSP surface: shared capital deployment
-    cap across Magma + LSP sales, crash-proof peer-message handling.
+  Deeper routing insight — and a fix for silently-failed Magma selling.
+  - Fixed: an expired or revoked Amboss key made Magma buying AND selling
+    silently do nothing — no offers listed, no orders fulfilled — while the app
+    still showed "connected". LightningMate now checks whether Amboss still
+    accepts your key and shows "key expired — reconnect" in Settings and the
+    Sell tab. If you've never sold despite having selling on, this was likely
+    why: reconnect with a fresh key.
+  - New Routing view (Analytics → Routing): per-channel flow direction
+    (draining / filling / balanced, flagged when a draining channel is nearly
+    empty), routing corridors (the channel pairs that actually carry your flow —
+    a route needs both a source and a sink), and a banner for the forwards you
+    refused for lack of liquidity. Turns the forwards log into "where does flow
+    go, where am I losing it, what to do".
+  - Carried over from 0.7.0 for anyone updating from before: LSP mode (beta,
+    sell channels directly over LSPS1/bLIP-51, off by default), the "Advertise
+    routable size" autopilot option, and the unserved-demand telemetry.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
