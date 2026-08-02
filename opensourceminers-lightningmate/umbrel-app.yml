@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.7.2"
+version: "0.7.3"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,18 +28,20 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Smarter auto-rebalancing — refill the channels that are actually earning.
-  - The rebalance autopilot no longer gets stuck raising a hot channel's fee
-    forever while never refilling it. It now refills a draining, in-demand
-    channel whenever that's profitable, and only insists on a fee raise first
-    when the channel's fee is genuinely below its own refill cost.
-  - Volume-first channels (priced low to win routing) are no longer structurally
-    excluded from being refilled — the real per-route profit check decides.
-  - The daily rebalance budget and each run's slots now go to the MOST PROFITABLE
-    moves first (not the biggest channels), and one over-budget move no longer
-    cancels the cheaper profitable ones behind it.
-  - Carried over from 0.7.1: the Routing view (Analytics → Routing) and the fix
-    that surfaces an expired Amboss key instead of silently failing to sell.
+  A cleaner, more useful Analytics area.
+  - The Performance tab now shows a tidy grid of the eight metrics that matter —
+    routing profit, revenue, routed volume, node yield, rebalancing spend,
+    rebalance ROI, fee-tuning impact and Magma leases — in place of the old
+    lopsided row.
+  - The Routing tab is more polished: matching stat cards, per-channel flow
+    (draining / filling / balanced with an "almost empty" flag), and routing
+    corridors shown as a single "in → out" route.
+  - Also in 0.7.2/0.7.3: smarter auto-rebalancing — it no longer gets stuck
+    raising a hot channel's fee forever instead of refilling it, volume-first
+    channels are no longer shut out of refills, and the daily budget goes to the
+    most profitable moves first.
+  - Carried over: the fix that surfaces an expired Amboss key instead of
+    silently failing to sell on Magma.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
