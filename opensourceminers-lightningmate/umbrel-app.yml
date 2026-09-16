@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.7.3"
+version: "0.7.4"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,20 +28,23 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  A cleaner, more useful Analytics area.
-  - The Performance tab now shows a tidy grid of the eight metrics that matter —
-    routing profit, revenue, routed volume, node yield, rebalancing spend,
-    rebalance ROI, fee-tuning impact and Magma leases — in place of the old
-    lopsided row.
-  - The Routing tab is more polished: matching stat cards, per-channel flow
-    (draining / filling / balanced with an "almost empty" flag), and routing
-    corridors shown as a single "in → out" route.
-  - Also in 0.7.2/0.7.3: smarter auto-rebalancing — it no longer gets stuck
-    raising a hot channel's fee forever instead of refilling it, volume-first
-    channels are no longer shut out of refills, and the daily budget goes to the
-    most profitable moves first.
-  - Carried over: the fix that surfaces an expired Amboss key instead of
-    silently failing to sell on Magma.
+  Channel peer suggestions now know who other node runners actually trust.
+  - New: peers are checked against lightningnetwork.plus. Its rank, Prime status
+    and the ratings real operators gave each other now feed into the suggestion
+    score, next to the network-graph signals the app already used. A graph can
+    show you that a node is well connected; it cannot tell you whether people
+    who opened channels to it would do it again.
+  - A peer with no LN+ profile is never penalised — most of the network isn't on
+    LN+, and the score stays exactly as before for those. The reputation can only
+    move a suggestion by up to 20% either way, so it refines the ranking instead
+    of taking it over. Peers other operators rate badly get flagged.
+  - The Autopilot uses the same signal when it opens channels on your behalf.
+  - New LN+ tab under Market: browse Liquidity Pool nodes, and see open Swaps
+    with an upfront check of whether YOUR node qualifies — capacity, channel
+    count, Prime requirement and Tor vs clearnet — before you click through.
+    Joining stays a manual decision, since it commits you to opening a channel
+    within 48 hours and keeping it open for the full term.
+  - Thanks to @RelativelyIrrelevant for suggesting the integration.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
