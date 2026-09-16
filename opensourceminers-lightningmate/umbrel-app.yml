@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.7.4"
+version: "0.7.5"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,23 +28,30 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Channel peer suggestions now know who other node runners actually trust.
-  - New: peers are checked against lightningnetwork.plus. Its rank, Prime status
-    and the ratings real operators gave each other now feed into the suggestion
-    score, next to the network-graph signals the app already used. A graph can
-    show you that a node is well connected; it cannot tell you whether people
-    who opened channels to it would do it again.
-  - A peer with no LN+ profile is never penalised — most of the network isn't on
-    LN+, and the score stays exactly as before for those. The reputation can only
-    move a suggestion by up to 20% either way, so it refines the ranking instead
-    of taking it over. Peers other operators rate badly get flagged.
-  - The Autopilot uses the same signal when it opens channels on your behalf.
-  - New LN+ tab under Market: browse Liquidity Pool nodes, and see open Swaps
-    with an upfront check of whether YOUR node qualifies — capacity, channel
-    count, Prime requirement and Tor vs clearnet — before you click through.
-    Joining stays a manual decision, since it commits you to opening a channel
-    within 48 hours and keeping it open for the full term.
-  - Thanks to @RelativelyIrrelevant for suggesting the integration.
+  Magma selling, rebuilt around what buyers actually pay.
+  - Your offer is now priced against Amboss's real completed orders, not against
+    what other sellers are asking. Listed prices are wishes; this is what money
+    changed hands at. The cheapest rung can no longer go below the 25th
+    percentile of real sales.
+  - Removed a feedback loop that quietly destroyed offers: the Autopilot used to
+    cut the price a little more for every day without a sale. That does not help,
+    because Magma's buy request carries no offer id at all — Amboss picks the
+    seller, so being cheapest wins nothing and only gives away the margin. Offers
+    that had already been driven to the floor are lifted back.
+  - Fixed a pricing bug where the fee rate hit its 1 ppm minimum and the real
+    price silently became whatever the base fee happened to be, often a fraction
+    of the intended one.
+  - New: "your size window reaches X% of real orders". This is usually the actual
+    reason an offer sits unsold — a window that misses the median order size
+    cannot be matched at any price. The app now shows what a larger maximum
+    channel size would unlock, and the Autopilot keeps an existing offer's size
+    range and lease length in step with the market instead of only its price.
+  - The default lease length is now one buyers actually ask for.
+  - Available liquidity on the market page subtracts each offer's committed
+    orders, so a busy seller no longer looks wide open.
+  - Buy: pick a specific seller from the ranked list and the order goes to them.
+  - The market analysis no longer needs a connected Amboss key, so an expired key
+    shows you why nothing is selling instead of an empty page.
 
 developer: opensourceminers.de
 website: https://opensourceminers.de
