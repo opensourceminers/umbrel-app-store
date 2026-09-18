@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.7.6"
+version: "0.7.7"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,25 +28,22 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  The Autopilot can now size your Magma offer, not just price it.
-  - New switch: let the Autopilot keep your offer's size range and lease length
-    in step with the market, up to a maximum order size you set. Size decides
-    whether a buyer can be matched with you at all; price only decides what you
-    earn once they are. An offer whose size range misses the orders people
-    actually place cannot fill at any price.
-  - The caps section now tells you what your cap is worth: the share of real
-    Magma orders you can serve today, and what each larger maximum would unlock.
-    The numbers come from Amboss's completed orders, not from guesswork.
-  - If your on-chain balance, rather than your setting, is what limits you, the
-    app says so plainly instead of letting you tune the wrong knob.
-  - A maximum channel size above your capital cap is flagged, because an order
-    that big could never be served.
+  Fixes for the offer auto-sizing introduced in 0.7.6.
+  - Auto-sizing no longer touches your price. With auto-pricing switched off,
+    resizing or relisting an offer used to write the engine's recommended price
+    over the one you had set, and with no offer listed it could even create one
+    at the engine's price. Sizing now only ever changes the size range and lease
+    length; the price is yours unless you delegate it.
+  - Upgrading to 0.7.6 switched auto-sizing on for everyone, even where
+    auto-pricing was deliberately off. That migration is fixed: auto-sizing now
+    follows your auto-pricing setting on upgrade, and installs that already ran
+    0.7.6 with pricing off get sizing switched back off. The repair only ever
+    turns automation off, never on.
+  - With auto-pricing off, the smallest order auto-sizing admits is now worked
+    out from your own listed price rather than the engine's, so it cannot open
+    the window to orders that would lose money at the price you set.
 
-  Carried over from 0.7.5: Magma offers are priced against Amboss's real
-  completed orders instead of what other sellers are asking, the Autopilot no
-  longer cuts the price a little further for every day without a sale (which
-  wins nothing, since Amboss picks the seller and a purchase carries no offer
-  id), and a bug that let the real price collapse to the base fee is fixed.
+  Thanks to the Umbrel team for spotting the first two in review.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
