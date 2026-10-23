@@ -7,7 +7,7 @@ services:
       APP_PORT: 3001
 
   web:
-    image: ghcr.io/opensourceminers/lightningmate:v0.7.7@sha256:917fa062d9520ea5bf92fb94bbe12b2947ed025c2bd8b82b3dcd5435127392ce
+    image: ghcr.io/opensourceminers/lightningmate:v0.8.0@sha256:7cc88e8fb40d1f3671ee5093c5d55485cd635aead31e098453e35b8bce591ee2
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m
@@ -44,3 +44,8 @@ services:
       # disable. Best-effort + skipped on the seller's own node.
       LM_SELL_FEE_BPS: "100"
       LM_SELL_FEE_ADDRESS: "lightningmate@btcpay.opensourceminers.de"
+      # Umbrel's Tor proxy (SOCKS5): LightningMate's own third-party lookups (LN+
+      # reputations incl. this node's pubkey, the BTC price, Amboss's public market
+      # data) go through Tor instead of the home connection.
+      TOR_PROXY_IP: "$TOR_PROXY_IP"
+      TOR_PROXY_PORT: "$TOR_PROXY_PORT"
