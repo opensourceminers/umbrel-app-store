@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.0"
+version: "0.8.1"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,49 +28,27 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  A reliability and honesty release: Magma selling moves to Amboss's new
-  Magma API, and every part of the autopilot says what it decided and why.
+  A safety release for Magma selling — please update.
 
-  Magma selling (off by default)
-  - Orders are accepted with a hold invoice: the buyer's payment settles only
-    once Amboss confirms the channel, and every failure refunds it.
-  - Each order step is recorded before it happens, so a restart never opens a
-    second channel, and an order the node can't serve is rejected at once
-    rather than left to time out.
-  - Offers carry the standard 30-day lease and a routing-fee promise, which
-    the fee autopilot keeps for every channel sold.
-  - A live check shows how often offers like yours sell. Amboss decides which
-    seller gets an order, mostly by track record; price and size don't buy a
-    match, and the app no longer says they do.
-  - Turning selling on is its own confirmed step; no preset turns it on.
+  - 0.8.0 could list your sell offer at 0 ppm + 0 sat. When it changed one
+    term of an offer (the routing-fee promise, say), Amboss reset the terms
+    it didn't send — the price included — and the check afterwards looked only
+    at what was sent. LightningMate now sends every term with each change and
+    checks all of them afterwards.
+  - An offer Amboss lists for free gets a price back within minutes (the
+    engine's with auto-pricing on, otherwise the last one it had). If no price
+    is known, LightningMate takes the offer off the market and tells you. An
+    offer without a price can't be enabled.
+  - Orders that don't cover opening and closing their channel are turned down
+    at once; an order Amboss priced at 0 sats is rejected a minute after it
+    arrives, not left to time out.
+  - Buyer conditions and on-chain fee settings set on amboss.tech are kept.
+  - Overview: the autopilot, top channels and suggested peers side by side;
+    repeated forwards grouped in the activity feed. Market → Sell is leaner:
+    your offer first, the details one click away.
 
-  Autopilot
-  - Fees move toward an aim in bounded steps, rise only when a channel drains,
-    and a draining channel is priced against what refilling it costs.
-  - A refill never pays more than the profit check allowed; the daily budget
-    survives restarts and counts refills run by hand.
-  - Automatic channel opens pay a capped fee rate and, where the node's
-    routing yield is measured, must pay back their on-chain cost within a
-    year; a peer that is briefly offline is no reason to close.
-  - Presets show what they change before they apply, "Pause all automation"
-    switches every autopilot automation off at once (LSP mode, a Settings
-    switch, keeps running and says so), and each area says what it last
-    decided and why.
-
-  Profit & loss
-  - Every cost counts: closes and their sweeps, rebalances made with any tool,
-    inbound bought on Magma.
-
-  Wallet and LSP mode
-  - An on-chain send shows its fee in sats and asks again before it overpays
-    or dips into the reserve.
-  - LSP mode (experimental, off by default) accepts the order request of
-    ZEUS's embedded node; orders are paced and capped.
-
-  Privacy and security
-  - With Umbrel's Tor proxy, the app's own lookups (LN+, the BTC price, Amboss
-    market data) go through Tor; Settings → Privacy lists every destination.
-  - The API refuses requests a browser marks as cross-site.
+  If your offer shows 0 ppm on Market → Sell after the update, set its price
+  (or use "Apply recommended to my offer") and enable it.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
