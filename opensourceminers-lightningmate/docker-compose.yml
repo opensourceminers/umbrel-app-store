@@ -7,7 +7,7 @@ services:
       APP_PORT: 3001
 
   web:
-    image: ghcr.io/opensourceminers/lightningmate:v0.8.3@sha256:7cca7510f027e909a32432402f3e7a66cc656116f24ed2cad5b0a23a335f5890
+    image: ghcr.io/opensourceminers/lightningmate:v0.8.4@sha256:ad3eb3bef83b72c0ea0ccab41d0b5ed19b7271f5ec3678e5706fc07504addc3b
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m

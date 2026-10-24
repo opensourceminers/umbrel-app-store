@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.3"
+version: "0.8.4"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,20 +28,35 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Fixes from testing 0.8.1 — please update.
+  Fixes from testing 0.8.3, and faster fees where a drained channel sells.
 
-  - A Magma offer that was disabled while Amboss held it at 0 ppm + 0 sat
-    could not be enabled again: 0.8.1 refuses to list an offer without a
-    price and left disabled offers alone. With auto-pricing on, LightningMate
-    now gives such an offer its price while it is disabled (the engine's, or
-    the last one it had) on its first run after the update. An offer you
-    disabled stays off until you enable it on Market → Sell; one the
-    autopilot took off the market for lack of capital is listed again once
-    the capital is there. With auto-pricing off, set the price on
-    Market → Sell, then enable the offer.
-  - Security: a single malformed compressed request could crash the app
-    (body-parser, GHSA-27r3-jxmh-p828, published on 23 October). The library
-    is updated.
+  Magma selling
+  - Switching Liquidity provision on lists your offers again. Switching it off
+    disables your listed offers, and 0.8.3 then left each one off until you
+    enabled it by hand. Now the offers that were disabled when you switch
+    selling on are listed again once each can be funded and has its price —
+    also offers whose terms you set yourself (they keep them). The
+    confirmation tells you how many; "keep disabled" on Market → Sell keeps
+    one off.
+  - An offer is only listed again once its terms are on Amboss and checked.
+    If the autopilot prices it, that is its current price: until it has one,
+    the offer waits, so it never goes live at an old price. Offers whose terms
+    you set are listed at your price.
+  - Your offer's base fee follows the market. 0.8.0 had reset it to 0 sat;
+    nearly every Magma offer charges one (median 568 sat). With auto-pricing
+    on, the autopilot moves your base to what comparable offers charge once
+    that has differed for a day, and lowers the rate to match, so a channel of
+    your typical size costs the same. It never lowers the base so far that
+    your smallest channel no longer covers its on-chain costs.
+
+  Fees and rebalancing
+  - A drained channel that keeps selling is raised faster: by a quarter of its
+    fee every 6 hours instead of 20 ppm every three days — each step only
+    after three sales at the current fee, so it never runs far ahead of what
+    buyers pay.
+  - The rebalancer refills such a channel once a higher price is proven by
+    real sales, sized to what sold at it, and no longer judges a drained
+    channel by the two weeks in which it couldn't sell.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
