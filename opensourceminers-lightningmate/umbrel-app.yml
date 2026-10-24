@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.1"
+version: "0.8.3"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,27 +28,20 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  A safety release for Magma selling — please update.
+  Fixes from testing 0.8.1 — please update.
 
-  - 0.8.0 could list your sell offer at 0 ppm + 0 sat. When it changed one
-    term of an offer (the routing-fee promise, say), Amboss reset the terms
-    it didn't send — the price included — and the check afterwards looked only
-    at what was sent. LightningMate now sends every term with each change and
-    checks all of them afterwards.
-  - An offer Amboss lists for free gets a price back within minutes (the
-    engine's with auto-pricing on, otherwise the last one it had). If no price
-    is known, LightningMate takes the offer off the market and tells you. An
-    offer without a price can't be enabled.
-  - Orders that don't cover opening and closing their channel are turned down
-    at once; an order Amboss priced at 0 sats is rejected a minute after it
-    arrives, not left to time out.
-  - Buyer conditions and on-chain fee settings set on amboss.tech are kept.
-  - Overview: the autopilot, top channels and suggested peers side by side;
-    repeated forwards grouped in the activity feed. Market → Sell is leaner:
-    your offer first, the details one click away.
-
-  If your offer shows 0 ppm on Market → Sell after the update, set its price
-  (or use "Apply recommended to my offer") and enable it.
+  - A Magma offer that was disabled while Amboss held it at 0 ppm + 0 sat
+    could not be enabled again: 0.8.1 refuses to list an offer without a
+    price and left disabled offers alone. With auto-pricing on, LightningMate
+    now gives such an offer its price while it is disabled (the engine's, or
+    the last one it had) on its first run after the update. An offer you
+    disabled stays off until you enable it on Market → Sell; one the
+    autopilot took off the market for lack of capital is listed again once
+    the capital is there. With auto-pricing off, set the price on
+    Market → Sell, then enable the offer.
+  - Security: a single malformed compressed request could crash the app
+    (body-parser, GHSA-27r3-jxmh-p828, published on 23 October). The library
+    is updated.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
