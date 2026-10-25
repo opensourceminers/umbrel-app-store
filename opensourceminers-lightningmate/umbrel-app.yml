@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.5"
+version: "0.8.6"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,33 +28,44 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Tor-only, a fast start page and a shorter Settings page.
+  A full review of every autopilot, and the fixes for what it found.
 
-  Tor-only
-  - Every lookup Lightning Mate makes now goes through Umbrel's Tor proxy:
-    LN+, the BTC price, Amboss's market data and now also the Amboss calls
-    made with your API key (your offers and orders) and the service-fee
-    lookup. Nothing leaves from your home IP address, and nothing needs a port
-    opened on your router. The Tor route setting is gone: there is nothing to
-    choose.
-  - This keeps Magma selling running where a provider blocks Amboss's
-    addresses (Spanish providers do during LaLiga matches): through Tor,
-    Amboss stays reachable.
-  - LSP mode no longer announces a clearnet address. Buyers get your node's
-    .onion address in the buyer guide; an address an older version announced
-    is withdrawn once when 0.8.5 starts.
+  Fees
+  - A fee is raised only after something sold at the current fee, and a
+    raise nothing sells at is stepped back after two days — no more fee
+    updates without a sale behind them.
+  - A drained channel that keeps selling is raised by a quarter of its fee
+    every 6 hours, each step after three sales at the fee before it.
+  - max_htlc no longer resends an update that doesn't take.
 
-  Faster start page
-  - On a node with many failed payments (rebalance attempts, probes) the
-    Overview could take over a minute to show its figures: LND walked its
-    whole payment history, four times at once. It now reads only what it
-    needs, once, and the page loads in under a second (the first load after
-    a restart takes a few seconds while the network graph is read).
+  Rebalancing
+  - Refills are valued at the highest fee that recently sold three times —
+    a fee raise no longer erases that proof — and sized to what sold at it.
+  - Every refill attempt ends inside its wait and is booked with LND's
+    reason; an LND hiccup no longer blocks the rest of the run.
 
-  Settings
-  - Shorter: each section shows its switches and its state. The details
-    (where each lookup goes, signing a message, how LSP mode reaches buyers)
-    are one click away.
+  Channels
+  - With selling on, opens hold back only what your Magma offer can list;
+    the rest can open routing channels again.
+  - The close list now includes dead channels that only trickle a few sats.
+    A sold channel is closed after its lease only when that is worth it, at
+    an economy fee rate.
+  - A peer's refusal moves on to the next peer; an open cut off by a restart
+    is never repeated at once.
+
+  Magma
+  - No offer invites orders that would be turned down below cost: with
+    auto-size the minimum channel rises with on-chain fees, and an offer no
+    order could pay for is taken off the market until it can.
+  - The base fee follows comparable offers — at once when far off, else
+    after 1.5 h, at most every 6 h — and Market → Sell shows a pending change.
+  - A pending order no longer lets an offer be topped up, fee parts are
+    billed only at your offer's price, and an Accept below cost asks twice.
+
+  Reliability
+  - A call to LND or Amboss that never answers is given up at a deadline
+    instead of stopping every autopilot until a restart; scheduled runs are
+    no longer skipped while fees are written.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
