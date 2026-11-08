@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.7"
+version: "0.8.8"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,49 +28,29 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  Selling on Magma, fixed for buyers your node isn't already connected to.
+  A simpler autopilot, and much less to read.
 
-  Orders
-  - A buyer's node that takes a moment to answer is no longer turned down.
-    Since 0.8.0 nearly every order from a node you weren't already connected
-    to was rejected within seconds as "unreachable": the app gave LND's
-    connection 1.5 s, and over Tor it takes far longer.
-  - A dial now waits up to 90 s, onion addresses first. A buyer that can't be
-    reached is dialed again every 3 minutes, and the order is rejected only
-    about 4 minutes before its deadline. The order says what LND answered.
-  - Silent buyers no longer hold up other orders.
-  - A node's very first sale no longer fails its accept.
-  - Past a paid order's deadline the payment goes back to the buyer rather
-    than a channel being opened.
+  Autopilot
+  - One page instead of five tabs: your strategy, one row per area with its
+    switch and what it did last, and your limits. Tables and advanced
+    settings open under a row.
+  - Capital to sell: choose "Everything free" and your offer follows what is
+    free on chain after what you keep, at every run, or set "At most" an
+    amount. Your current limit stays as it is until you choose.
+  - One choice for your offer: "The autopilot manages my offer" covers price,
+    size and listing, and closing a sold channel after its lease. The single
+    switches, pricing modes and the largest order are under Advanced on the
+    Selling row. Amboss still decides who gets orders.
+  - The Selling status says how much is listed.
 
-  Your offer
-  - With auto-size and auto-relist your offer lists what "Max capital
-    deployed" and the wallet allow, not just its largest order, and takes
-    orders up to your max channel size. If your cap is above what you list
-    today, the offer grows to it with this update. To list less, lower the
-    cap on Autopilot → Magma.
-  - While an order is pending, the offer's window and listing stay as they
-    are.
-  - Fewer needless offer updates: a base fee that just moved follows only a
-    level that has held for 12 hours, and a minimum the mempool raised stays
-    up for 6 hours.
-  - Amboss still decides which seller a buyer is matched with; none of this
-    makes a node sell.
+  Less to read
+  - Long explanations moved behind a "?" across the app. Nothing is gone: a
+    tap shows them.
+  - Inbound offers and LN+ nodes show the top 10, with a button for the rest.
+  - Fee rows choose auto, fixed or excluded from one menu, and the fee, open
+    and close lists show a reason's first clause, the rest in a row's details.
 
-  Sold channels
-  - After its lease a sold channel is closed unless it earns about what
-    selling those coins again would (at least 0.5 % a year on the coins a
-    close frees) or under a quarter of it is on your side. A close never pays
-    above your maximum on-chain fee rate.
-
-  Alerts
-  - A peer offline for a week or more is named, with what is stuck in its
-    channel.
-
-  Tested: a whole sale on real LND nodes on regtest (accept, held payment,
-  channel, settlement, close, refund). Amboss's side was simulated, so the
-  first live order is the first real run of this path: watch it on Market →
-  Orders.
+  Nothing changes in how fees, refills, opens or sales are decided.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
