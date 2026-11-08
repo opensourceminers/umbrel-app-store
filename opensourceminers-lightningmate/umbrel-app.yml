@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.6"
+version: "0.8.7"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,44 +28,49 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  A full review of every autopilot, and the fixes for what it found.
+  Selling on Magma, fixed for buyers your node isn't already connected to.
 
-  Fees
-  - A fee is raised only after something sold at the current fee, and a
-    raise nothing sells at is stepped back after two days — no more fee
-    updates without a sale behind them.
-  - A drained channel that keeps selling is raised by a quarter of its fee
-    every 6 hours, each step after three sales at the fee before it.
-  - max_htlc no longer resends an update that doesn't take.
+  Orders
+  - A buyer's node that takes a moment to answer is no longer turned down.
+    Since 0.8.0 nearly every order from a node you weren't already connected
+    to was rejected within seconds as "unreachable": the app gave LND's
+    connection 1.5 s, and over Tor it takes far longer.
+  - A dial now waits up to 90 s, onion addresses first. A buyer that can't be
+    reached is dialed again every 3 minutes, and the order is rejected only
+    about 4 minutes before its deadline. The order says what LND answered.
+  - Silent buyers no longer hold up other orders.
+  - A node's very first sale no longer fails its accept.
+  - Past a paid order's deadline the payment goes back to the buyer rather
+    than a channel being opened.
 
-  Rebalancing
-  - Refills are valued at the highest fee that recently sold three times —
-    a fee raise no longer erases that proof — and sized to what sold at it.
-  - Every refill attempt ends inside its wait and is booked with LND's
-    reason; an LND hiccup no longer blocks the rest of the run.
+  Your offer
+  - With auto-size and auto-relist your offer lists what "Max capital
+    deployed" and the wallet allow, not just its largest order, and takes
+    orders up to your max channel size. If your cap is above what you list
+    today, the offer grows to it with this update. To list less, lower the
+    cap on Autopilot → Magma.
+  - While an order is pending, the offer's window and listing stay as they
+    are.
+  - Fewer needless offer updates: a base fee that just moved follows only a
+    level that has held for 12 hours, and a minimum the mempool raised stays
+    up for 6 hours.
+  - Amboss still decides which seller a buyer is matched with; none of this
+    makes a node sell.
 
-  Channels
-  - With selling on, opens hold back only what your Magma offer can list;
-    the rest can open routing channels again.
-  - The close list now includes dead channels that only trickle a few sats.
-    A sold channel is closed after its lease only when that is worth it, at
-    an economy fee rate.
-  - A peer's refusal moves on to the next peer; an open cut off by a restart
-    is never repeated at once.
+  Sold channels
+  - After its lease a sold channel is closed unless it earns about what
+    selling those coins again would (at least 0.5 % a year on the coins a
+    close frees) or under a quarter of it is on your side. A close never pays
+    above your maximum on-chain fee rate.
 
-  Magma
-  - No offer invites orders that would be turned down below cost: with
-    auto-size the minimum channel rises with on-chain fees, and an offer no
-    order could pay for is taken off the market until it can.
-  - The base fee follows comparable offers — at once when far off, else
-    after 1.5 h, at most every 6 h — and Market → Sell shows a pending change.
-  - A pending order no longer lets an offer be topped up, fee parts are
-    billed only at your offer's price, and an Accept below cost asks twice.
+  Alerts
+  - A peer offline for a week or more is named, with what is stuck in its
+    channel.
 
-  Reliability
-  - A call to LND or Amboss that never answers is given up at a deadline
-    instead of stopping every autopilot until a restart; scheduled runs are
-    no longer skipped while fees are written.
+  Tested: a whole sale on real LND nodes on regtest (accept, held payment,
+  channel, settlement, close, refund). Amboss's side was simulated, so the
+  first live order is the first real run of this path: watch it on Market →
+  Orders.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
