@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.8"
+version: "0.8.9"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   LightningMate manages your Lightning node so you don't have to babysit it.
@@ -28,29 +28,34 @@ description: >-
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
 releaseNotes: |-
-  A simpler autopilot, and much less to read.
+  Click any node for its details, and a simpler Channels page.
 
-  Autopilot
-  - One page instead of five tabs: your strategy, one row per area with its
-    switch and what it did last, and your limits. Tables and advanced
-    settings open under a row.
-  - Capital to sell: choose "Everything free" and your offer follows what is
-    free on chain after what you keep, at every run, or set "At most" an
-    amount. Your current limit stays as it is until you choose.
-  - One choice for your offer: "The autopilot manages my offer" covers price,
-    size and listing, and closing a sold channel after its lease. The single
-    switches, pricing modes and the largest order are under Advanced on the
-    Selling row. Amboss still decides who gets orders.
-  - The Selling status says how much is listed.
+    Node details
+    - Click a node's name in the Channels table, the suggestions, the close list,
+      Analytics, Market or the autopilot's history. One sentence says where you
+      stand with it, then come its channel, what it earned, what each side
+      charges and its place in the network. The rest is under Advanced.
+    - A node without a channel is scored the way the suggestions score it. What
+      keeps it off the list comes first.
+    - Find any node under Channels → To open by alias, key or key@host:port, and
+      open a channel to it.
+    - Opening a node asks mempool.space (where it runs, since when) and LN+ about
+      that one node, through Tor. Each has its switch in Settings → Privacy.
 
-  Less to read
-  - Long explanations moved behind a "?" across the app. Nothing is gone: a
-    tap shows them.
-  - Inbound offers and LN+ nodes show the top 10, with a button for the rest.
-  - Fee rows choose auto, fixed or excluded from one menu, and the fee, open
-    and close lists show a reason's first clause, the rest in a row's details.
+    Channels
+    - Four columns: node, size and balance, earned in 30 days, a note. Flow, fees
+      and close are under "More columns", and your choice stays.
+    - Fee modes and closing are also in a node's details.
 
-  Nothing changes in how fees, refills, opens or sales are decided.
+    Fixed
+    - The BTC price and your fiat figures through Tor: mempool.space didn't answer
+      Tor exits, so its onion service is asked now.
+    - Copy buttons on plain http://umbrel.local. They say "copied" only when it
+      was.
+    - A second open to a node by hand, while the first is still being sent, is
+      refused instead of funding two channels.
+
+    Nothing changes in how fees, refills, automatic opens or sales are decided.
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
