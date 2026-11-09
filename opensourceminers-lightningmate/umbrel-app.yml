@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.9.0"
+version: "0.9.1"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   Lightning Mate manages your Lightning node so you don't have to babysit it.
@@ -45,39 +45,35 @@ description: >-
   node or move your funds.
 
 releaseNotes: |-
-  Easier to use, with every setting still there when you want it.
+  A cleaner layout on a phone and on a desktop.
 
     Start page
-    - It opens with what needs you today: a peer away for days, a failed run, idle
-      channels. Each line leads to where it is dealt with.
-    - Node health, profit and the liquidity map open on a click, and stay as you
-      left them.
+    - A new head with what you hold and what you can send and receive.
+    - Node health and profit sit right below it, then the rest.
+
+    Channels
+    - More in each row: who opened it, its age, its fee, what it earned and how
+      many forwards it carried.
+
+    Market → Sell
+    - Your price and its figures are no longer folded away, and your offer stands
+      beside its price.
+    - A well-priced offer says why it stays as it is: the autopilot rewrites an
+      offer only from 10 % off the recommendation (at least 25 ppm), so it doesn't
+      change for every small move of the market.
 
     Autopilot
-    - "Advanced" says how many settings you changed from your strategy, and can
-      put them back. Nothing changes until you save.
+    - Even spacing, and the fields under Advanced line up.
 
-    Selling
-    - The settings are under Autopilot → Selling. Market → Sell shows your offer
-      and what is wrong with it; editing by hand and the selling check open on a
-      click.
-    - "Liquidity provision" is now just "Selling".
-
-    Plain words
-    - "Your side" and "their side" instead of local and remote, fees in percent
-      too, and Settings has what the words mean.
-    - Settings is the gear at the top right.
-
-    New installs
-    - Three short questions on the first start: what the node is for, how much the
-      app may use, and what that will do. An existing install never sees them.
-
-    Fixed
-    - A close whose fee the peer refuses is no longer called failed: LND goes on
-      with it, and the dialog says so instead of offering a force-close.
-    - No more sideways scrolling on a phone.
+    On a phone
+    - The tabs are a bar at the bottom, every one in reach.
+    - Tables fit the screen, and numbers and buttons no longer break across lines.
+    - Channel suggestions are cards with their buttons, and what a decision rests
+      on stays in the row: why an offer can't be bought, a refill's state and its
+      Run button, what closing a channel gives up.
 
     Nothing changes in how fees, refills, automatic opens or sales are decided.
+
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
