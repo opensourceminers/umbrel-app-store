@@ -2,58 +2,80 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.8.9"
+version: "0.9.0"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
-  LightningMate manages your Lightning node so you don't have to babysit it.
-  It connects automatically to your Umbrel Lightning (LND) node.
+  Lightning Mate manages your Lightning node so you don't have to babysit it.
+  It connects automatically to your Umbrel Lightning (LND) node and asks three
+  short questions the first time you open it: what the node is for, how much the
+  app may use, and what that will do.
 
 
-  See channels with live balance bars and source / sink / router roles, a full
-  Forwards routing report, and a Profit & Loss overview (routing revenue vs
-  channel-open and rebalancing costs). Get scored channel-peer suggestions from
-  the network graph and open channels in a click.
+  The start page says what needs you today. Click any node for its details: how
+  its channel is doing, what it earned, what each side charges and its place in
+  the network, or how it scores as a peer if you are thinking of opening a
+  channel. Every setting is still there for those who want it, under Advanced.
 
 
-  Flip on the Autopilot and the node tunes its own fees and runs only profitable
-  rebalances on recommended settings — with safe caps and per-channel cooldowns.
+  See what each channel earned, a routing report, and a Profit & Loss overview
+  (routing revenue against every cost). Get scored channel-peer suggestions from
+  the network graph and open channels in a click, plus a node health score.
 
 
-  Buy and sell channel liquidity on the Amboss Magma marketplace right from the
-  app: purchase inbound, list your own sell offer, and let the Autopilot fulfil
-  orders automatically — opening channels to buyers within your capital caps.
+  Flip on the Autopilot and the node tunes its own pricing, runs only profitable
+  rebalances, and opens channels to top peers, on recommended settings with safe
+  caps and cooldowns.
+
+
+  Buy and sell channel liquidity on the Amboss Magma marketplace right inside the
+  app: purchase inbound, list your own offer, and let the Autopilot fulfil orders,
+  opening channels to buyers within your capital, channel-size and on-chain
+  reserve caps. Amboss decides which seller gets an order.
+
+
+  LSP mode (experimental) turns your node into a Lightning Service Provider: wallets
+  speaking the open LSPS1 standard (bLIP-51) can buy inbound channels from you
+  directly, priced automatically, paid via a hold invoice that only settles
+  once the channel is opening, refunded automatically on any failure. Off by
+  default.
 
 
   Lightning Mate signs in with the per-app password Umbrel generates for it
   (shown when you open the app), so no other app on your server can read your
   node or move your funds.
+
 releaseNotes: |-
-  Click any node for its details, and a simpler Channels page.
+  Easier to use, with every setting still there when you want it.
 
-    Node details
-    - Click a node's name in the Channels table, the suggestions, the close list,
-      Analytics, Market or the autopilot's history. One sentence says where you
-      stand with it, then come its channel, what it earned, what each side
-      charges and its place in the network. The rest is under Advanced.
-    - A node without a channel is scored the way the suggestions score it. What
-      keeps it off the list comes first.
-    - Find any node under Channels → To open by alias, key or key@host:port, and
-      open a channel to it.
-    - Opening a node asks mempool.space (where it runs, since when) and LN+ about
-      that one node, through Tor. Each has its switch in Settings → Privacy.
+    Start page
+    - It opens with what needs you today: a peer away for days, a failed run, idle
+      channels. Each line leads to where it is dealt with.
+    - Node health, profit and the liquidity map open on a click, and stay as you
+      left them.
 
-    Channels
-    - Four columns: node, size and balance, earned in 30 days, a note. Flow, fees
-      and close are under "More columns", and your choice stays.
-    - Fee modes and closing are also in a node's details.
+    Autopilot
+    - "Advanced" says how many settings you changed from your strategy, and can
+      put them back. Nothing changes until you save.
+
+    Selling
+    - The settings are under Autopilot → Selling. Market → Sell shows your offer
+      and what is wrong with it; editing by hand and the selling check open on a
+      click.
+    - "Liquidity provision" is now just "Selling".
+
+    Plain words
+    - "Your side" and "their side" instead of local and remote, fees in percent
+      too, and Settings has what the words mean.
+    - Settings is the gear at the top right.
+
+    New installs
+    - Three short questions on the first start: what the node is for, how much the
+      app may use, and what that will do. An existing install never sees them.
 
     Fixed
-    - The BTC price and your fiat figures through Tor: mempool.space didn't answer
-      Tor exits, so its onion service is asked now.
-    - Copy buttons on plain http://umbrel.local. They say "copied" only when it
-      was.
-    - A second open to a node by hand, while the first is still being sent, is
-      refused instead of funding two channels.
+    - A close whose fee the peer refuses is no longer called failed: LND goes on
+      with it, and the dialog says so instead of offering a force-close.
+    - No more sideways scrolling on a phone.
 
     Nothing changes in how fees, refills, automatic opens or sales are decided.
 developer: opensourceminers.de
