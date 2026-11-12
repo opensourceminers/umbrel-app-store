@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.9.1"
+version: "0.10.0"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   Lightning Mate manages your Lightning node so you don't have to babysit it.
@@ -45,35 +45,17 @@ description: >-
   node or move your funds.
 
 releaseNotes: |-
-  A cleaner layout on a phone and on a desktop.
+  A large round of fixes from a full review of the app: Magma sales complete reliably, fees and refills decide on what really earned, and the app is harder to misuse.
 
-    Start page
-    - A new head with what you hold and what you can send and receive.
-    - Node health and profit sit right below it, then the rest.
+  - A Magma sale completes by itself: the channel is opened first, never twice, and the payment is claimed when it arrives
+  - No Magma channel is opened for more on-chain fee than its order brings; one that still costs more at its last moment is ended and refunded
+  - The Magma offer is priced on what buyers paid, never on listings that only undercut
+  - A fee that sells is kept, and a refill is judged per peer and booked on the channel it arrived on
+  - LSP mode can't be tied up: a buyer who pays and stays away holds your coins six hours at most
+  - Closing or opening at a fee far above the next block's asks again, and an on-chain send is never sent twice
+  - The app's log and Settings → Privacy say how its own lookups leave, and "Sign out everywhere" ends every session
 
-    Channels
-    - More in each row: who opened it, its age, its fee, what it earned and how
-      many forwards it carried.
-
-    Market → Sell
-    - Your price and its figures are no longer folded away, and your offer stands
-      beside its price.
-    - A well-priced offer says why it stays as it is: the autopilot rewrites an
-      offer only from 10 % off the recommendation (at least 25 ppm), so it doesn't
-      change for every small move of the market.
-
-    Autopilot
-    - Even spacing, and the fields under Advanced line up.
-
-    On a phone
-    - The tabs are a bar at the bottom, every one in reach.
-    - Tables fit the screen, and numbers and buttons no longer break across lines.
-    - Channel suggestions are cards with their buttons, and what a decision rests
-      on stays in the row: why an offer can't be bought, a refill's state and its
-      Run button, what closing a channel gives up.
-
-    Nothing changes in how fees, refills, automatic opens or sales are decided.
-
+  Full release notes are available at https://github.com/opensourceminers/lightningmate/releases
 developer: opensourceminers.de
 website: https://opensourceminers.de
 icon: https://cdn.jsdelivr.net/gh/opensourceminers/umbrel-app-store@master/opensourceminers-lightningmate/icon.svg
