@@ -2,7 +2,7 @@ manifestVersion: 1
 id: opensourceminers-lightningmate
 category: bitcoin
 name: Lightning Mate
-version: "0.10.0"
+version: "0.10.1"
 tagline: Profit-aware management & autopilot for your Lightning node
 description: >-
   Lightning Mate manages your Lightning node so you don't have to babysit it.
@@ -45,15 +45,13 @@ description: >-
   node or move your funds.
 
 releaseNotes: |-
-  A large round of fixes from a full review of the app: Magma sales complete reliably, fees and refills decide on what really earned, and the app is harder to misuse.
+  Connecting Amboss is now one guided card in Settings, and every place that needs your key leads there.
 
-  - A Magma sale completes by itself: the channel is opened first, never twice, and the payment is claimed when it arrives
-  - No Magma channel is opened for more on-chain fee than its order brings; one that still costs more at its last moment is ended and refunded
-  - The Magma offer is priced on what buyers paid, never on listings that only undercut
-  - A fee that sells is kept, and a refill is judged per peer and booked on the channel it arrived on
-  - LSP mode can't be tied up: a buyer who pays and stays away holds your coins six hours at most
-  - Closing or opening at a fee far above the next block's asks again, and an on-chain send is never sent twice
-  - The app's log and Settings → Privacy say how its own lookups leave, and "Sign out everywhere" ends every session
+  - Settings sits in the top bar with its name; on a phone it is a large gear
+  - Settings opens with Amboss: three steps — log in with your node (the message is signed right there), make a key, paste it; Amboss checks it before it is kept
+  - A key Amboss rejects is replaced right there, without removing it first
+  - "Sign a message" is its own section and says up front when write mode is missing
+  - "Connect Amboss" on Market, the start page, the Autopilot and the first start opens the card directly
 
   Full release notes are available at https://github.com/opensourceminers/lightningmate/releases
 developer: opensourceminers.de
